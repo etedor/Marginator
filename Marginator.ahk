@@ -44,7 +44,7 @@ VerticalMargin := (ResolutionHeight - ActiveHeight) / 2
 WinMove A, , HorizontalMargin, VerticalMargin
 return
 
-# From http://www.autohotkey.com/board/topic/69464-how-to-determine-a-window-is-in-which-monitor/
+; From http://www.autohotkey.com/board/topic/69464-how-to-determine-a-window-is-in-which-monitor/
 GetMonitorIndexFromWindow(windowHandle)
 {
   ; Starts with 1.
