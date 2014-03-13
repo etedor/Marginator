@@ -39,7 +39,7 @@ else
 WinGetPos, , , ActiveWidth, ActiveHeight, A
 
 HorizontalMargin := (ResolutionWidth - ActiveWidth) / 2 + BoundingCoordinatesLeft
-VerticalMargin := (ResolutionHeight - ActiveHeight) / 2
+VerticalMargin := (ResolutionHeight - ActiveHeight) / 2 + BoundingCoordinatesTop
 
 WinMove A, , HorizontalMargin, VerticalMargin
 return
