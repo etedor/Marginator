@@ -1,4 +1,4 @@
-; Resize the active window to be 75% of the screen width and center it on the screen.
+; Resize the active window to be 85% of the screen width and center it on the screen.
 ; Useful for widescreen resolutions >= 1080p.
 resizeWindow()
 {
