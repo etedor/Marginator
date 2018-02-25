@@ -1,6 +1,13 @@
-; Resize the active window to be 85% of the screen width and center it on the screen.
-; Useful for widescreen resolutions >= 1080p.
-resizeWindow()
+; Restore the active window to allow it to be resized.
+restoreWindow()
+{
+  ActiveWindowHandle := WinExist("A")
+
+  WinRestore A
+}
+
+; Resize the active window to be %scale% of the screen width and height and center it on the screen.
+resizeWindow(scale)
 {
   ActiveWindowHandle := WinExist("A")
   MonitorIndex := GetMonitorIndexFromWindow(ActiveWindowHandle)
@@ -10,10 +17,10 @@ resizeWindow()
   ResolutionWidth := BoundingCoordinatesRight - BoundingCoordinatesLeft
   ResolutionHeight := BoundingCoordinatesBottom - BoundingCoordinatesTop
 
-  AdjustedWidth := 0.85 * ResolutionWidth
+  AdjustedWidth := scale * ResolutionWidth
   LeftMargin := 0.125 * ResolutionWidth + BoundingCoordinatesLeft
   
-  AdjustedHeight := 0.85 * ResolutionHeight
+  AdjustedHeight := scale * ResolutionHeight
   TopMargin := 0.125 * ResolutionHeight + BoundingCoordinatesTop
 
   WinMove A, , LeftMargin, TopMargin, AdjustedWidth, AdjustedHeight
@@ -83,8 +90,34 @@ GetMonitorIndexFromWindow(windowHandle)
   return monitorIndex
 }
 
+; Ctrl+Alt+C
+; Restores the window.
+; Scales the active window to 85% of the screen's width and height.
+; Centers the window on the window's current screen.
 ^!c::
-resizeWindow()
-moveWindow()
+{
+ scale:=0.85
+ 
+ restoreWindow()
+ resizeWindow(scale)
+ moveWindow()
+
+ return
+}
+
+; Ctrl+Alt+Shift+C
+; Restores the window.
+; Scales the active window to 50% of the screen's width and height.
+; Centers the window on the window's current screen.
+^!+c::
+{
+ scale:=0.50
+ 
+ restoreWindow()
+ resizeWindow(scale)
+ moveWindow()
+
+ return
+}
 
 return
